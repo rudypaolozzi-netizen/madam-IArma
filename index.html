@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madame IArma - Prédictions 2026</title>
+    <meta name="description" content="Reçois ton message personnalisé et ta prédiction pour 2026 avec Madame IArma">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Étoiles d'arrière-plan -->
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- ÉCRAN FORMULAIRE -->
+        <section id="formScreen" class="screen active">
+            <div class="glass-card">
+                <h1 class="main-title">Ta carte de vœux IA</h1>
+                <p class="subtitle">Reçois ton message personnalisé et ta prédiction pour 2026</p>
+
+                <form id="predictionForm" novalidate>
+                    <!-- Champ prénom -->
+                    <div class="form-group">
+                        <label for="prenom">Ton prénom</label>
+                        <input type="text" id="prenom" name="prenom" placeholder="Entre ton prénom..." required
+                            autocomplete="given-name">
+                        <span class="error-message" id="prenomError"></span>
+                    </div>
+
+                    <!-- Choix univers -->
+                    <div class="form-group">
+                        <label class="universe-label">Quel univers te correspond le plus ?</label>
+                        <div class="universe-grid">
+                            <div class="universe-card" data-universe="tech">
+                                <span class="universe-icon">🤖</span>
+                                <span class="universe-name">Tech & IA</span>
+                            </div>
+                            <div class="universe-card" data-universe="business">
+                                <span class="universe-icon">💼</span>
+                                <span class="universe-name">Business</span>
+                            </div>
+                            <div class="universe-card" data-universe="creation">
+                                <span class="universe-icon">🎨</span>
+                                <span class="universe-name">Création</span>
+                            </div>
+                            <div class="universe-card" data-universe="event">
+                                <span class="universe-icon">🎉</span>
+                                <span class="universe-name">Event</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="universe" name="universe" required>
+                        <span class="error-message" id="universeError"></span>
+                    </div>
+
+                    <!-- Bouton submit -->
+                    <button type="submit" class="btn-primary">
+                        Générer ma carte 2026
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ÉCRAN RÉSULTAT -->
+        <section id="resultScreen" class="screen">
+            <div class="result-container">
+                <h1 class="main-title">Ta carte est prête !</h1>
+
+                <!-- Carte générée -->
+                <div id="cardPreview" class="card-wrapper">
+                    <div class="prediction-card">
+                        <div class="card-badge" id="cardBadge">★ Tech & IA</div>
+
+                        <div class="card-header">
+                            <div class="card-year">2026</div>
+                            <div class="card-subtitle">BONNE ANNÉE</div>
+                        </div>
+
+                        <div class="card-body">
+                            <h2 class="card-title">Prédiction de Madame IArma</h2>
+
+                            <div class="card-greeting" id="cardGreeting">
+                                Cher Prénom,
+                            </div>
+
+                            <div class="card-wishes" id="cardWishes">
+                                <!-- Texte de vœux généré ici -->
+                            </div>
+
+                            <div class="card-prediction-box">
+                                <div class="prediction-title">TA PRÉDICTION POUR 2026</div>
+                                <div class="prediction-text" id="cardPrediction">
+                                    <!-- Prédiction générée ici -->
+                                </div>
+                            </div>
+
+                            <div class="card-signature">— Madame IArma</div>
+                        </div>
+
+                        <!-- Décoration bulles -->
+                        <div class="bubble bubble-1"></div>
+                        <div class="bubble bubble-2"></div>
+                        <div class="bubble bubble-3"></div>
+                        <div class="bubble bubble-4"></div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="action-buttons">
+                    <button id="downloadBtn" class="btn-primary">
+                        📥 Télécharger la prédiction
+                    </button>
+
+                    <a href="#" id="newCardLink" class="new-card-link">
+                        ← Créer une autre carte
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- html2canvas pour génération PNG -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
