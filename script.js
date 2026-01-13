@@ -51,7 +51,7 @@ const predictions = {
             "Tu organiseras une réunion Zoom où tout le monde sera à l'heure, la légende en parlera pendant des siècles.",
             "Ton ROI atteindra des sommets si hauts que les comptables inventeront de nouveaux chiffres pour le mesurer.",
             "Warren Buffett te demandera conseil, et tu lui suggéreras d'investir dans des cookies artisanaux.",
-            "Tu deviendras viral sur LinkedIn pour avoir posté une photo de ton chat avec un costume-cravate.",
+            "Tu deviendras viral sur LinkedIn pour avoir posté une photo de ton chat with un costume-cravate.",
             "Ta signature électronique sera reconnue comme œuvre d'art calligraphique par Christie's.",
             "Un algorithme de recrutement t'identifiera comme « trop visionnaire » et proposera de créer un poste rien que pour toi.",
             "Tu découvriras que la vraie réussite, c'est d'arriver à ouvrir le pot de cornichons du premier coup.",
@@ -75,7 +75,7 @@ const predictions = {
         predictions: [
             "Tu créeras une œuvre si puissante qu'elle fera pleurer un cactus de joie.",
             "Une mouette volera ton croquis et le déposera devant le MET, qui l'exposera immédiatement.",
-            "Tu inventeras une nouvelle couleur que Pantone nommera « L'Espoir Doré ».",
+            "Tu inventeras un nouvelle couleur que Pantone nommera « L'Espoir Doré ».",
             "Ton œuvre sera achetée par un collectionneur extraterrestre qui paiera en poussière d'étoiles.",
             "Un musée ouvrira une aile entière dédiée à ton doodle du jeudi après-midi.",
             "Tu découvriras que ta gomme contient un portail vers une dimension créative infinie.",
@@ -95,7 +95,7 @@ const predictions = {
             "Que tes playlists soient des sortilèges qui font danser même les plus timides, et que l'ambiance soit toujours électrique.",
             "Les lieux s'illuminent à ton passage, et tes décorations transforment le banal en féerie absolue.",
             "Puisse ton agenda être rempli de moments magiques, et que chaque événement soit une page de conte merveilleux.",
-            "Que les DJ te vénèrent, les traiteurs t'adorent, et que les photographes capturent ton génie organisationnel.",
+            "Que les DJ te vénèrent, les traiteurs t'adore, et que les photographes capturent ton génie organisationnel.",
             "Puissent tes invitations devenir des reliques précieuses que l'on conserve jalousement.",
             "Que ton sourire soit la clé qui ouvre toutes les portes des salles les plus prestigieuses.",
             "Puisse 2026 t'offrir des moments de célébration si intenses qu'ils réécriront la définition du bonheur."
@@ -127,7 +127,6 @@ let currentPrediction = null;
 // GESTION DU FORMULAIRE
 // ===========================
 
-// Sélection des éléments
 const formScreen = document.getElementById('formScreen');
 const resultScreen = document.getElementById('resultScreen');
 const form = document.getElementById('predictionForm');
@@ -137,29 +136,20 @@ const prenomError = document.getElementById('prenomError');
 const universeError = document.getElementById('universeError');
 const universeCards = document.querySelectorAll('.universe-card');
 
-// Gestion de la sélection d'univers
 universeCards.forEach(card => {
     card.addEventListener('click', () => {
-        // Retirer la sélection précédente
         universeCards.forEach(c => c.classList.remove('selected'));
-
-        // Ajouter la sélection actuelle
         card.classList.add('selected');
         selectedUniverse = card.dataset.universe;
         universeInput.value = selectedUniverse;
-
-        // Effacer le message d'erreur
         universeError.textContent = '';
     });
 });
 
-// Validation du formulaire
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     let isValid = true;
 
-    // Valider le prénom
     const prenom = prenomInput.value.trim();
     if (!prenom) {
         prenomError.textContent = 'Entre ton prénom pour continuer';
@@ -168,7 +158,6 @@ form.addEventListener('submit', (e) => {
         prenomError.textContent = '';
     }
 
-    // Valider l'univers
     if (!selectedUniverse) {
         universeError.textContent = 'Choisis un univers qui te correspond';
         isValid = false;
@@ -182,18 +171,11 @@ form.addEventListener('submit', (e) => {
     }
 });
 
-// ===========================
-// GÉNÉRATION DE LA CARTE
-// ===========================
-
 function generatePrediction(prenom, universe) {
     const data = predictions[universe];
-
-    // Sélection aléatoire
     const randomWish = data.wishes[Math.floor(Math.random() * data.wishes.length)];
     const randomPrediction = data.predictions[Math.floor(Math.random() * data.predictions.length)];
 
-    // Mapper les noms d'univers pour l'affichage
     const universeNames = {
         tech: 'Tech & IA',
         business: 'Business',
@@ -201,13 +183,11 @@ function generatePrediction(prenom, universe) {
         event: 'Event'
     };
 
-    // Mettre à jour la carte
     document.getElementById('cardBadge').textContent = `★ ${universeNames[universe]}`;
     document.getElementById('cardGreeting').textContent = `Cher ${prenom},`;
     document.getElementById('cardWishes').textContent = randomWish;
     document.getElementById('cardPrediction').textContent = randomPrediction;
 
-    // Stocker pour usage ultérieur (partage, copie)
     currentPrediction = {
         prenom,
         universe,
@@ -220,13 +200,47 @@ function generatePrediction(prenom, universe) {
 function showResultScreen() {
     formScreen.classList.remove('active');
     resultScreen.classList.add('active');
+    createSparkles();
+}
+
+function createSparkles() {
+    const container = document.getElementById('sparklesContainer');
+    if (!container) return;
+
+    container.innerHTML = '';
+    const sparkleCount = 40;
+
+    for (let i = 0; i < sparkleCount; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+
+        const angle = (Math.random() * 360) * (Math.PI / 180);
+        const distance = 100 + Math.random() * 200;
+
+        const deltaX = Math.cos(angle) * distance;
+        const deltaY = Math.sin(angle) * distance;
+
+        const delay = Math.random() * 0.3;
+        const duration = 1.5 + Math.random() * 0.8;
+
+        sparkle.style.left = '50%';
+        sparkle.style.top = '50%';
+        sparkle.style.setProperty('--delta-x', `${deltaX}px`);
+        sparkle.style.setProperty('--delta-y', `${deltaY}px`);
+        sparkle.style.animationDelay = `${delay}s`;
+        sparkle.style.animationDuration = `${duration}s`;
+
+        container.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.remove();
+        }, (duration + delay) * 1000);
+    }
 }
 
 function showFormScreen() {
     resultScreen.classList.remove('active');
     formScreen.classList.add('active');
-
-    // Reset du formulaire
     form.reset();
     universeCards.forEach(c => c.classList.remove('selected'));
     selectedUniverse = null;
@@ -234,62 +248,40 @@ function showFormScreen() {
     universeError.textContent = '';
 }
 
-// ===========================
-// TÉLÉCHARGEMENT PNG
-// ===========================
-
 document.getElementById('downloadBtn').addEventListener('click', async () => {
     const cardElement = document.querySelector('.prediction-card');
     const btn = document.getElementById('downloadBtn');
 
-    // Désactiver le bouton pendant le traitement
     btn.disabled = true;
     btn.textContent = '⏳ Génération en cours...';
 
     try {
-        // Utiliser html2canvas pour capturer la carte
         const canvas = await html2canvas(cardElement, {
-            scale: 2, // Haute résolution
+            scale: 2,
             backgroundColor: null,
             logging: false,
             useCORS: true
         });
 
-        // Convertir en blob et télécharger
         canvas.toBlob((blob) => {
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
-
-            // Créer un nom de fichier propre
             const cleanPrenom = currentPrediction.prenom.toLowerCase().replace(/[^a-z0-9]/g, '');
             const cleanUniverse = currentPrediction.universe;
             link.download = `prediction-madame-iarma-2026-${cleanPrenom}-${cleanUniverse}.png`;
-
             link.href = url;
             link.click();
-
-            // Nettoyer
             URL.revokeObjectURL(url);
-
-            // Restaurer le bouton
             btn.disabled = false;
             btn.textContent = '📥 Télécharger la prédiction';
         });
     } catch (error) {
         console.error('Erreur lors de la génération du PNG:', error);
-        alert('Désolé, une erreur est survenue lors de la génération de l\'image. Essaie de faire une capture d\'écran à la place !');
-
-        // Restaurer le bouton
+        alert('Désolé, une erreur est survenue lors de la génération de l\'image.');
         btn.disabled = false;
         btn.textContent = '📥 Télécharger la prédiction';
     }
 });
-
-
-
-// ===========================
-// NOUVELLE CARTE
-// ===========================
 
 document.getElementById('newCardLink').addEventListener('click', (e) => {
     e.preventDefault();

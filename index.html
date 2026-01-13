@@ -11,14 +11,21 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=5">
     <style>
-        /* Fond bleu nuit fixe avec étoiles statiques */
+        /* Fond bleu nuit fixe */
         html,
         body {
             margin: 0;
             padding: 0;
             background: #0a0e27;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Étoiles fixes en arrière-plan */
+        body {
             background-image:
                 radial-gradient(2px 2px at 20px 30px, white, transparent),
                 radial-gradient(2px 2px at 60px 70px, white, transparent),
@@ -33,8 +40,62 @@
                 radial-gradient(2px 2px at 250px 90px, white, transparent),
                 radial-gradient(1px 1px at 220px 130px, white, transparent);
             background-size: 300px 200px;
-            background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
-            min-height: 100vh;
+        }
+
+        /* Étoiles scintillantes (overlay) */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            background-image:
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(1px 1px at 50% 20%, white, transparent),
+                radial-gradient(2px 2px at 80% 40%, white, transparent),
+                radial-gradient(1px 1px at 30% 60%, white, transparent),
+                radial-gradient(2px 2px at 70% 70%, white, transparent);
+            animation: twinkle1 3s ease-in-out infinite;
+        }
+
+        body::after {
+            background-image:
+                radial-gradient(1px 1px at 60% 25%, white, transparent),
+                radial-gradient(2px 2px at 25% 45%, white, transparent),
+                radial-gradient(1px 1px at 90% 55%, white, transparent),
+                radial-gradient(1px 1px at 45% 75%, white, transparent);
+            animation: twinkle2 4s ease-in-out infinite 1.5s;
+        }
+
+        @keyframes twinkle1 {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes twinkle2 {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -92,6 +153,9 @@
 
         <!-- ÉCRAN RÉSULTAT -->
         <section id="resultScreen" class="screen">
+            <!-- Effet paillettes -->
+            <div class="sparkles-container" id="sparklesContainer"></div>
+
             <div class="result-container">
                 <h1 class="main-title">Ta carte est prête !</h1>
 
