@@ -57,8 +57,9 @@ Une application web interactive qui génère des cartes de vœux personnalisées
 
 ## 📝 Licence
 
-Projet créé pour ELOGOZ MEDIA - 2026
+Projet créé Rudy PAOLOZZI - antigravity 2026
 
 ---
 
 *Prédictions générées avec amour et absurdité par Madame IArma* ✨
+
